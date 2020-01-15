@@ -10,9 +10,9 @@ Option Explicit
 
 
 Sub F_TOBEUL()
-'ÒÑ¾­´«ºÃµÄ ¸´ÖÆµÄ PR_DONE
-'Ñ¡ÔñÎÄ¼şÌí¼ÓÖµÊı¾İ¿â ´ı´«¡£
-'ÒÑ¾­´«ºÃµÄ ¸´ÖÆµÄ PR_DONE
+'å·²ç»ä¼ å¥½çš„ å¤åˆ¶çš„ PR_DONE
+'é€‰æ‹©æ–‡ä»¶æ·»åŠ å€¼æ•°æ®åº“ å¾…ä¼ ã€‚
+'å·²ç»ä¼ å¥½çš„ å¤åˆ¶çš„ PR_DONE
 Dim re As String, ct As String, sql As String
 
 re = InStr(1, Application.OperatingSystem, "64-bit", vbTextCompare)
@@ -173,16 +173,16 @@ ThisWorkbook.ActiveSheet.UsedRange.Clear
 Dim re As String, ct As String, sql As String
  Dim cnn As New ADODB.Connection
  Dim rst As New ADODB.Recordset
-'---------------------------------------------------------------- ÅĞ¶ÏÏµÍ³ÊÇ·ñÎª64Î»
+'---------------------------------------------------------------- åˆ¤æ–­ç³»ç»Ÿæ˜¯å¦ä¸º64ä½
 re = InStr(1, Application.OperatingSystem, "64-bit", vbTextCompare)
 If re = 0 Then
     ct = "provider=Microsoft.jet.OLEDB.4.0;data source="
 Else
     ct = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
 End If
-'----------------------------------------------------------------- ÔØÈë»ù±¾ÅäÖÃ
+'----------------------------------------------------------------- è½½å…¥åŸºæœ¬é…ç½®
 cnn.Open ct & "Z:\24_Temp\PA_Logs\HTML\mdb\HTML_Data.mdb"
-'sql = "select * from PR_TOBEUPLOAD order by ±àºÅ desc"
+'sql = "select * from PR_TOBEUPLOAD order by ç¼–å· desc"
 sql = "select * from PR_TOBEUPLOAD"
 rst.Open sql, cnn, adOpenKeyset, adLockOptimistic
 Range("A2").CopyFromRecordset rst
@@ -198,16 +198,16 @@ Dim re As String
  
  Dim cnn As New ADODB.Connection
  Dim rst As New ADODB.Recordset
-'---------------------------------------------------------------- ÅĞ¶ÏÏµÍ³ÊÇ·ñÎª64Î»
+'---------------------------------------------------------------- åˆ¤æ–­ç³»ç»Ÿæ˜¯å¦ä¸º64ä½
 re = InStr(1, Application.OperatingSystem, "64-bit", vbTextCompare)
 If re = 0 Then
     ct = "provider=Microsoft.jet.OLEDB.4.0;data source="
 Else
     ct = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
 End If
-'----------------------------------------------------------------- ÔØÈë»ù±¾ÅäÖÃ
+'----------------------------------------------------------------- è½½å…¥åŸºæœ¬é…ç½®
 cnn.Open ct & "Z:\24_Temp\PA_Logs\HTML\mdb\HTML_Data.mdb"
-'sql = "select top 100 * from (select * from PR_DONE order by ±àºÅ desc)"
+'sql = "select top 100 * from (select * from PR_DONE order by ç¼–å· desc)"
 sql = ThisWorkbook.Worksheets("setting").Range("A1")
 If InStr(sql, "select top 100 * from (select * from PR_DONE order by") = 0 Then
 MsgBox "SQL Error!"
@@ -225,7 +225,7 @@ Application.AutomationSecurity = msoAutomationSecurityForceDisable
 
 
 Application.ScreenUpdating = False
-'Èç¹ûËùÑ¡PRµ¥ÒÑ¾­´æÔÚµ¥ºÅ£¬±¨´í²¢·µ»Ø¼Ù
+'å¦‚æœæ‰€é€‰PRå•å·²ç»å­˜åœ¨å•å·ï¼ŒæŠ¥é”™å¹¶è¿”å›å‡
 Dim str1 As String
 Dim str2 As String, str3 As String
 Dim date_formate_ddmmyyyy As Boolean
@@ -254,16 +254,16 @@ Set ws_pr = wb.ActiveSheet
 If wb.ActiveSheet.Range("B10") = "Protocol:" And wb.ActiveSheet.Range("C10") = "" Then
 
 
-'ÀàĞÍÉè¶¨
+'ç±»å‹è®¾å®š
 i_20 = 21
 C_B = "B": C_C = "C"
 C_E = "D": C_G = "F"
 C_I = "H": C_K = "J"
 C_M = "L": C_Q = "M"
 C_J = "I"
-'ÀàĞÍÉè¶¨
+'ç±»å‹è®¾å®š
 
-        '¼ì²éµ¥ºÅÄÚÍâÒ»ÖÂ
+        'æ£€æŸ¥å•å·å†…å¤–ä¸€è‡´
         str3 = wb.ActiveSheet.Range("O7")
         str2 = Left(get_fln(flfp), Len(str3))
         If str3 <> str2 Then
@@ -273,7 +273,7 @@ C_J = "I"
         wb.ActiveSheet.Range("O7") = Left(get_fln(flfp), 6)
         ready_to_upload = False
         End If
-        '¼ì²éµ¥ºÅÄÚÍâÒ»ÖÂ
+        'æ£€æŸ¥å•å·å†…å¤–ä¸€è‡´
         
 
             str1 = wb.ActiveSheet.Range("N21")
@@ -284,7 +284,7 @@ C_J = "I"
             ready_to_upload = False
             End If
             
-            'PX????.??? ²»ÄÜ´óÓÚ10¸ö×Ö·û
+            'PX????.??? ä¸èƒ½å¤§äº10ä¸ªå­—ç¬¦
              
             If ready_to_upload = True Then
             str1 = wb.ActiveSheet.Range("C21")
@@ -315,14 +315,14 @@ C_J = "I"
 ElseIf wb.ActiveSheet.Range("C10") = "Protocol:" And wb.ActiveSheet.Range("D10") = "" Then
 
 
-'ÀàĞÍÉè¶¨
+'ç±»å‹è®¾å®š
 i_20 = 20
 C_B = "B": C_C = "C": C_D = "D": C_E = "E": C_F = "F": C_G = "G": C_H = "H": C_I = "I": C_J = "J": C_K = "K": C_L = "L": C_M = "M": C_N = "N": C_O = "O": C_P = "P": C_Q = "Q": C_R = "R"
-'ÀàĞÍÉè¶¨
+'ç±»å‹è®¾å®š
 
 
 
-        '¼ì²éµ¥ºÅÄÚÍâÒ»ÖÂ
+        'æ£€æŸ¥å•å·å†…å¤–ä¸€è‡´
         str3 = wb.ActiveSheet.Range("P7")
         str2 = Left(get_fln(flfp), Len(str3))
         If str3 <> str2 Then
@@ -332,7 +332,7 @@ C_B = "B": C_C = "C": C_D = "D": C_E = "E": C_F = "F": C_G = "G": C_H = "H": C_I
         wb.ActiveSheet.Range("P7") = Left(get_fln(flfp), 6)
         ready_to_upload = False
         End If
-        '¼ì²éµ¥ºÅÄÚÍâÒ»ÖÂ
+        'æ£€æŸ¥å•å·å†…å¤–ä¸€è‡´
         
         
         
@@ -352,7 +352,7 @@ C_B = "B": C_C = "C": C_D = "D": C_E = "E": C_F = "F": C_G = "G": C_H = "H": C_I
             
             
             
-            'PX????.??? ²»ÄÜ´óÓÚ10¸ö×Ö·û
+            'PX????.??? ä¸èƒ½å¤§äº10ä¸ªå­—ç¬¦
              
             If ready_to_upload = True Then
             str1 = wb.ActiveSheet.Range("C21")
@@ -381,7 +381,7 @@ If ready_to_upload Then
 b_c = True
 i_last = i_20
 Do While b_c = True
-'E,G,J Á¬ĞøÁ½ĞĞÎª¿ÕÔòÖÕÖ¹
+'E,G,J è¿ç»­ä¸¤è¡Œä¸ºç©ºåˆ™ç»ˆæ­¢
 If Len(Trim(ws_pr.Range(C_E & i_last + 2))) + Len(Trim(ws_pr.Range(C_G & i_last + 2))) + Len(Trim(ws_pr.Range(C_J & i_last + 2))) = 0 Then
 If Len(Trim(ws_pr.Range(C_E & i_last + 1))) + Len(Trim(ws_pr.Range(C_G & i_last + 1))) + Len(Trim(ws_pr.Range(C_J & i_last + 1))) = 0 Then b_c = False
 End If
@@ -391,14 +391,14 @@ ws_pr.Rows(i_last).Interior.Color = RGB(255, 0, 0)
 ready_to_upload = False
 
 Else
-'C_B ÁĞ
+'C_B åˆ—
 str1 = Trim(ws_pr.Range(C_B & i_last))
 If Len(str1) = 0 Then
 ws_pr.Range(C_B & i_last).Interior.Color = RGB(255, 0, 0)
 ws_pr.Range(C_B & i_last) = i_last - i_20 + 1
 ready_to_upload = False
 End If
-'C_C ÁĞ
+'C_C åˆ—
 str1 = Trim(ws_pr.Range(C_C & i_last))
 If Len(str1) = 0 Then
 ws_pr.Range(C_C & i_last).Interior.Color = RGB(255, 0, 0)
@@ -438,24 +438,24 @@ End If
             
             
 If ready_to_upload = True Then
-'ÉèÖÃ´òÓ¡ÇøÓò
+'è®¾ç½®æ‰“å°åŒºåŸŸ
 
 If ws_pr.PageSetup.PrintArea <> "" Then
 ws_pr.PageSetup.PrintArea = "$C$1:$P$" & Right(ws_pr.PageSetup.PrintArea, Len(ws_pr.PageSetup.PrintArea) - 8)
 End If
 
 
-'ÉèÖÃ´òÓ¡ÇøÓò
+'è®¾ç½®æ‰“å°åŒºåŸŸ
 wb.Save
 wb.Close 0
 Else
 
-'ÉèÖÃ´òÓ¡ÇøÓò
+'è®¾ç½®æ‰“å°åŒºåŸŸ
 If ws_pr.PageSetup.PrintArea <> "" Then
 ws_pr.PageSetup.PrintArea = "$B$1:$Q$" & Right(ws_pr.PageSetup.PrintArea, Len(ws_pr.PageSetup.PrintArea) - 8)
 End If
 
-'ÉèÖÃ´òÓ¡ÇøÓò
+'è®¾ç½®æ‰“å°åŒºåŸŸ
 
 
 End If
@@ -464,13 +464,13 @@ Application.AutomationSecurity = msoAutomationSecurityLow
 
 Application.ScreenUpdating = True
 If ready_to_upload = False Then
-'ĞŞ¸ÄÈÕÆÚ¸ñÊ½
+'ä¿®æ”¹æ—¥æœŸæ ¼å¼
 If date_formate_ddmmyyyy Then
 If change_date_format(flfp) Then
 ready_to_upload = ready_to_upload(flfp)
 End If
 End If
-'ĞŞ¸ÄÈÕÆÚ¸ñÊ½
+'ä¿®æ”¹æ—¥æœŸæ ¼å¼
 End If
 
 
@@ -501,7 +501,7 @@ End If
 End Function
 
 Private Function change_date_format(flfp As String) As Boolean
-'½«¸ñÊ½×ª»»Îª"DD.MM.YYYY"
+'å°†æ ¼å¼è½¬æ¢ä¸º"DD.MM.YYYY"
 Dim wb As Workbook
 Dim start_i As Integer, i_last As Integer
 Dim i As Integer
@@ -538,14 +538,14 @@ End Sub
 
 
 Function format_date_DDMMYYYY(m_c As Range) As String
-'¸ñÊ½»¯ÈÕÆÚº¯Êı
-'Ö§³ÖExcelÈ«²¿ÈÕÆÚ¸ñÊ½ºÍCW£¿£¿ĞÎÊ½
+'æ ¼å¼åŒ–æ—¥æœŸå‡½æ•°
+'æ”¯æŒExcelå…¨éƒ¨æ—¥æœŸæ ¼å¼å’ŒCWï¼Ÿï¼Ÿå½¢å¼
     Dim date_1 As Date
     Dim s_1 As String
     Dim wk As Integer
     Dim str_date As String
 '===============================
-'µ¥Ôª¸ñÒÑ¾­ÊÇÈÕÆÚ¸ñÊ½µÄ£¬½øĞĞ¸ñÊ½×ª»»
+'å•å…ƒæ ¼å·²ç»æ˜¯æ—¥æœŸæ ¼å¼çš„ï¼Œè¿›è¡Œæ ¼å¼è½¬æ¢
 
     If IsDate(m_c) = True Then
     date_1 = m_c
@@ -553,13 +553,13 @@ Function format_date_DDMMYYYY(m_c As Range) As String
     Else
     format_date_DDMMYYYY = Trim(m_c)
     End If
-'µ¥Ôª¸ñÒÑ¾­ÊÇÈÕÆÚ¸ñÊ½µÄ£¬½øĞĞ¸ñÊ½×ª»»
+'å•å…ƒæ ¼å·²ç»æ˜¯æ—¥æœŸæ ¼å¼çš„ï¼Œè¿›è¡Œæ ¼å¼è½¬æ¢
 '===============================
 '===========================
-'ÅĞ¶ÏÊÇ·ñ×ª»»³É¹¦£¬Èç¹ûÎ´³É¹¦£¬ÅĞ¶ÏÊÇ·ñÎªCW##¸ñÊ½²¢×ª»»
+'åˆ¤æ–­æ˜¯å¦è½¬æ¢æˆåŠŸï¼Œå¦‚æœæœªæˆåŠŸï¼Œåˆ¤æ–­æ˜¯å¦ä¸ºCW##æ ¼å¼å¹¶è½¬æ¢
 
 If format_date_DDMMYYYY Like "##.##.####" Then
-'³É¹¦Ö±½ÓÌø¹ı
+'æˆåŠŸç›´æ¥è·³è¿‡
 Else
 
     str_date = format_date_DDMMYYYY
@@ -594,7 +594,7 @@ Else
     End If
     
 End If
-'ÅĞ¶ÏÊÇ·ñ×ª»»³É¹¦£¬Èç¹ûÎ´³É¹¦£¬ÅĞ¶ÏÊÇ·ñÎªCW##¸ñÊ½²¢×ª»»
+'åˆ¤æ–­æ˜¯å¦è½¬æ¢æˆåŠŸï¼Œå¦‚æœæœªæˆåŠŸï¼Œåˆ¤æ–­æ˜¯å¦ä¸ºCW##æ ¼å¼å¹¶è½¬æ¢
 '===========================
 
 
