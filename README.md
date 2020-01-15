@@ -10,4 +10,4 @@ Private Function get_email_address(fln As String) As String
 Private Function write_file(fln As String, s_text As String, s_path As String) As Boolean
 ```
 |#|说明|图片
-|1|提示输入邮箱地址|![asdf]()
+|1|提示输入邮箱地址|![asdf](https://github.com/45717335/PR_ADD_TO_DB/blob/master/PIC/%E6%94%B6%E9%9B%86%E9%82%AE%E4%BB%B6%E5%9C%B0%E5%9D%80.png)
