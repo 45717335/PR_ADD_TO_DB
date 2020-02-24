@@ -24,6 +24,7 @@ End If
 Dim i_last As Long
 Dim j_last As Long
 Dim j As Long
+Dim kk as long            
 Dim i As Long
 Dim temp_s As String
 Dim fln As String
