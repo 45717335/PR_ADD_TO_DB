@@ -252,6 +252,10 @@ Set wb = Workbooks.Open(Filename:=flfp, WriteResPassword:="TKSY")
 Set ws_pr = wb.ActiveSheet
 
 
+If Trim(wb.ActiveSheet.Range("E3")) = "" Then wb.ActiveSheet.Range("E3") = Left(Application.UserName, 12)
+
+
+                                        
 If wb.ActiveSheet.Range("B10") = "Protocol:" And wb.ActiveSheet.Range("C10") = "" Then
 
 
